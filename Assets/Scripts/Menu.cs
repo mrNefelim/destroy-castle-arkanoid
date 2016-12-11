@@ -25,7 +25,6 @@ public class Menu : MonoBehaviour {
 	}
 	public void soundToggle()
 	{
-		//Camera.main.GetComponent<AudioListener>.volume = 0;
 		if (AudioListener.pause == false) {
 			AudioListener.pause = true;
 		} else {

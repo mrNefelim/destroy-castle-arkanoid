@@ -18,15 +18,13 @@ public class PlayerScript : MonoBehaviour {
 	}
 	void OnGUI(){
 		GUI.Label (new Rect(5.0f,3.0f,200.0f,200.0f),"Live's: " + playerLives + "  Score: " + playerPoints);
+		PlayerPrefs.SetInt("playerPoints", playerPoints);
 	}
 	void Start () {
 		playerPosition = gameObject.transform.position;
 		playerLives = 3;
 		playerPoints = 0;
-
-		//PowerActive = GameObject.FindGameObjectsWithTag("PowerActive")[0];
-		//PowerActive.transform.localScale = new Vector2(0.6f,0.1f);
-		//Debug.Log(PowerActive.transform.localScale.y);
+		playerPoints = PlayerPrefs.GetInt ("playerPoints");
 	}
 	void Update () {
 		if (Input.GetAxis ("Horizontal") != 0) {
