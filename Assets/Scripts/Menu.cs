@@ -2,7 +2,7 @@
 using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
-	private int playerPoints;
+	private int playerPoints ;
 	public GameObject main;
 	public GameObject setting;
 	public void newGame()
@@ -13,7 +13,7 @@ public class Menu : MonoBehaviour {
 	}
 	public void resumeGame()
 	{
-		playerPoints = PlayerPrefs.GetInt ("playerPoints");
+		//playerPoints = PlayerPrefs.GetInt ("playerPoints");
 		SceneManager.LoadScene ("Level"+PlayerPrefs.GetInt ("level"), LoadSceneMode.Single);
 	}
 	public void settings()
