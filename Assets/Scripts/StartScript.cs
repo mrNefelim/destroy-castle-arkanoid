@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class StartScript : MonoBehaviour {
 	public int lineCount = 5;
 	public int columnsCount = 12;
+	public int emptyCount = 10;
 	List<int> blocksCount = new List<int>();
 	[System.Serializable]
 	public class levelObjects{
@@ -28,18 +29,21 @@ public class StartScript : MonoBehaviour {
 			if(lineCount < 1){lineCount = 1;}
 		}
 		for (int j = 0; j < lineCount; j++) {
+			int thisEmptyCount = emptyCount / lineCount;
 			for (int i = 0; i < columnsCount; i++) {
-			//	if (isTrue != columnsCount / 10) { // Empty blocks with 10% chance
-					int thisNumberBlock = (int)Random.Range (0, blocksCount.Count);
-					GameObject thisBlock = Instantiate (newLevelObjects [blocksCount [thisNumberBlock]].fromPrefab, new Vector2 (10.0f - i * 1.3f, 1.6f + j), Quaternion.identity) as GameObject;
-					thisBlock.SendMessage("setHitsToKill",newLevelObjects [blocksCount [thisNumberBlock]].hitsToKill);
-					thisBlock.SendMessage("setPoints",newLevelObjects [blocksCount [thisNumberBlock]].points);
-					blocksCount.RemoveAt (thisNumberBlock);
-			//	}
+				int thisNumberBlock = (int)Random.Range (0, blocksCount.Count);
+				if (Random.Range (0, thisEmptyCount) > thisEmptyCount / 3) {
+					i++;
+					thisEmptyCount--;
+				}
+				Vector2 thisVector = new Vector2 ((1.3f * columnsCount/2) - i * 1.3f, 1.6f + j);
+				GameObject thisBlock = Instantiate (newLevelObjects [blocksCount [thisNumberBlock]].fromPrefab, thisVector, Quaternion.identity) as GameObject;
+				thisBlock.SendMessage("setHitsToKill",newLevelObjects [blocksCount [thisNumberBlock]].hitsToKill);
+				thisBlock.SendMessage("setPoints",newLevelObjects [blocksCount [thisNumberBlock]].points);
+				blocksCount.RemoveAt (thisNumberBlock);
 			}
 		}
 	}	
-	// Update is called once per frame
 	void Update () {
 	
 	}
