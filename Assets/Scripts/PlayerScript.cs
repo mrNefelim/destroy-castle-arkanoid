@@ -7,20 +7,23 @@ public class PlayerScript : MonoBehaviour {
 	public float playerVelocity;
 	private Vector3 playerPosition;
 	public GameObject ballObject;
+	public GameObject fire;
 	private int playerLives;
 	private int playerPoints;
 	public GameObject guiLives;
 	public GameObject guiScores;
-	public GameObject PowerActive;
 	private Vector3 mousepoint;
 	void addPoints(int points){
 		playerPoints += points;
+		if (playerPoints > 100) {
+			fire.SetActive (true);
+			fire.SendMessage ("upFire", 0.02f);
+		}
 	}
 	void TakeLife(){
 		playerLives--;
 	}
 	void OnGUI(){
-		//GUI.Label (new Rect(5.0f,3.0f,200.0f,200.0f),"Live's: " + playerLives + "  Score: " + playerPoints);
 		guiLives.GetComponent<Text> ().text = playerLives.ToString();
 		guiScores.GetComponent<Text> ().text = playerPoints.ToString();
 		PlayerPrefs.SetInt("playerPoints", playerPoints);
@@ -30,6 +33,7 @@ public class PlayerScript : MonoBehaviour {
 		playerLives = 3;
 		playerPoints = 0;
 		playerPoints = PlayerPrefs.GetInt ("playerPoints");
+		fire.SetActive (false);
 	}
 	void Update () {
 		if (Input.GetAxis ("Horizontal") != 0) {

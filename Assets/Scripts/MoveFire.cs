@@ -4,11 +4,11 @@ using System.Collections;
 public class MoveFire : MonoBehaviour {
 	GameObject fire;
 	GameObject fireDubl;
-	private bool fireDublIsset = false;
 	private bool delayx = false;
 	private bool delayy = false;
 	private bool upFireTrue = false;
 	float up = 0.0f; 
+	int fireDublIsset = 0;
 	public float index;
 	Vector2 old_pos;
 	Vector2 new_pos;
@@ -53,11 +53,12 @@ public class MoveFire : MonoBehaviour {
 			old_pos = new Vector2 (old_pos.x, old_pos.y + up);
 			new_pos = new Vector2 (new_pos.x, new_pos.y + up);
 			upFireTrue = false;
-			if (new_pos.y > 0.25f&&fireDublIsset == false) {
+			fireDublIsset++;
+			if (fireDublIsset > 30) {
 				fireDubl = Instantiate(this.gameObject, new_pos, this.transform.rotation) as GameObject;
 				fireDubl.transform.SetParent (this.transform.parent);
 				fireDubl.transform.localScale = new Vector2(0.07f,0.07f);
-				fireDublIsset = true;
+				fireDublIsset = 0;
 			}
 		}
 		///////
