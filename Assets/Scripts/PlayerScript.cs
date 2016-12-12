@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerScript : MonoBehaviour {
@@ -8,6 +9,8 @@ public class PlayerScript : MonoBehaviour {
 	public GameObject ballObject;
 	private int playerLives;
 	private int playerPoints;
+	public GameObject guiLives;
+	public GameObject guiScores;
 	public GameObject PowerActive;
 	private Vector3 mousepoint;
 	void addPoints(int points){
@@ -17,7 +20,9 @@ public class PlayerScript : MonoBehaviour {
 		playerLives--;
 	}
 	void OnGUI(){
-		GUI.Label (new Rect(5.0f,3.0f,200.0f,200.0f),"Live's: " + playerLives + "  Score: " + playerPoints);
+		//GUI.Label (new Rect(5.0f,3.0f,200.0f,200.0f),"Live's: " + playerLives + "  Score: " + playerPoints);
+		guiLives.GetComponent<Text> ().text = playerLives.ToString();
+		guiScores.GetComponent<Text> ().text = playerPoints.ToString();
 		PlayerPrefs.SetInt("playerPoints", playerPoints);
 	}
 	void Start () {

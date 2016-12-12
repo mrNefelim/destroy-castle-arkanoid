@@ -2,16 +2,19 @@
 using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
-	public string level;
+	private int playerPoints;
 	public GameObject main;
 	public GameObject setting;
 	public void newGame()
 	{
+		PlayerPrefs.SetInt("playerPoints", 0);
+		PlayerPrefs.SetInt("level", 1);
 		SceneManager.LoadScene ("Level1", LoadSceneMode.Single);
 	}
 	public void resumeGame()
 	{
-		SceneManager.LoadScene (level, LoadSceneMode.Single);
+		playerPoints = PlayerPrefs.GetInt ("playerPoints");
+		SceneManager.LoadScene ("Level"+PlayerPrefs.GetInt ("level"), LoadSceneMode.Single);
 	}
 	public void settings()
 	{

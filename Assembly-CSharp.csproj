@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{2194B913-A83D-7162-538B-103EE6ED2AD2}</ProjectGuid>
+    <ProjectGuid>{607E7512-64E9-7CD6-D5A9-EDF361993BC5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\BallScriptOld.cs" />
      <Compile Include="Assets\Scripts\BlockScript.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
+     <Compile Include="Assets\Scripts\MoveFire.cs" />
      <Compile Include="Assets\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\Scripts\StartScript.cs" />
  <Reference Include="UnityEngine.UI">
