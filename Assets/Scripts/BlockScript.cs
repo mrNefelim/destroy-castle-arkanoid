@@ -6,6 +6,7 @@ public class BlockScript : MonoBehaviour {
 	public int points = 1;
 	public int numberOfHits;
 	private GameObject playerObject;
+	private GameObject parent;
 	public void setHitsToKill(int value)
 	{
 		hitsToKill = value;
@@ -20,12 +21,14 @@ public class BlockScript : MonoBehaviour {
 
 			if (numberOfHits == hitsToKill){
 				playerObject.SendMessage ("addPoints",points);
-				Destroy(this.gameObject);
+				Destroy (this.gameObject);
+//				ParticleSystem.Play ();
 			}
 		}
 	}
 	void Start () {
 		playerObject = GameObject.FindGameObjectsWithTag("Player")[0];
+		parent = this.parent;
 	}
 
 	void Update () {
