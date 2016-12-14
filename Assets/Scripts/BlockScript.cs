@@ -6,11 +6,11 @@ public class BlockScript : MonoBehaviour {
 	public int points = 1;
 	public int numberOfHits;
 	private GameObject playerObject;
-	private GameObject parent;
+	public ParticleSystem thisParticle;
 	public void setHitsToKill(int value)
 	{
 		hitsToKill = value;
-	}
+	} 
 	public void setPoints(int value)
 	{
 		points = value;
@@ -21,14 +21,18 @@ public class BlockScript : MonoBehaviour {
 
 			if (numberOfHits == hitsToKill){
 				playerObject.SendMessage ("addPoints",points);
-				Destroy (this.gameObject);
-//				ParticleSystem.Play ();
+				this.GetComponent<SpriteRenderer> ().enabled = false;
+				this.GetComponent<BoxCollider2D> ().enabled = false;
+				this.GetComponent<ParticleSystem>().Play (true);
+				if (!this.GetComponent<ParticleSystem>().IsAlive ()) {
+					Destroy (this.gameObject);
+				}
+				//
 			}
 		}
 	}
 	void Start () {
 		playerObject = GameObject.FindGameObjectsWithTag("Player")[0];
-		parent = this.parent;
 	}
 
 	void Update () {
