@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class BallScript : MonoBehaviour {
-	private bool ballIsActive;
+	public bool ballIsActive;
 	private Vector3 ballPosition;
 	private Vector2 ballInitialForce;
 	public GameObject playerObject;

@@ -13,6 +13,19 @@ public class PlayerScript : MonoBehaviour {
 	public GameObject guiLives;
 	public GameObject guiScores;
 	private Vector3 mousepoint;
+	private Vector3 ballPosition;
+	public bool ballStick = false;
+
+	void OnCollisionEnter2D(Collision2D collision){
+		if (collision.gameObject.tag == "Ball"&&ballStick==true) {
+			collision.gameObject.GetComponent<BallScript>().ballIsActive = false;
+			ballPosition = transform.position;
+			ballPosition.y = -5.23f;
+			collision.gameObject.transform.position = ballPosition;
+			collision.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+		}
+	}
+
 	void addPoints(int points){
 		playerPoints += points;
 		if (playerPoints > 100) {
@@ -22,6 +35,7 @@ public class PlayerScript : MonoBehaviour {
 	}
 	void TakeLife(){
 		playerLives--;
+		ballStick = false;
 	}
 	void OnGUI(){
 		guiLives.GetComponent<Text> ().text = playerLives.ToString();

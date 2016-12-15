@@ -12,6 +12,7 @@ public class StartScript : MonoBehaviour {
 		public int fromPrefabCount = 10;
 		public int hitsToKill = 1;
 		public int points = 10;
+		public bool bonus = false;
 	}
 	public levelObjects[] newLevelObjects;
 	void Start () {
@@ -40,6 +41,10 @@ public class StartScript : MonoBehaviour {
 				GameObject thisBlock = Instantiate (newLevelObjects [blocksCount [thisNumberBlock]].fromPrefab, thisVector, Quaternion.identity) as GameObject;
 				thisBlock.SendMessage("setHitsToKill",newLevelObjects [blocksCount [thisNumberBlock]].hitsToKill);
 				thisBlock.SendMessage("setPoints",newLevelObjects [blocksCount [thisNumberBlock]].points);
+				if (newLevelObjects [blocksCount [thisNumberBlock]].bonus == true) {
+					int bonusIsTrue = Random.Range (0, 2);
+					thisBlock.tag = "Bonus";
+				}
 				blocksCount.RemoveAt (thisNumberBlock);
 			}
 		}

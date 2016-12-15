@@ -6,6 +6,7 @@ public class BlockScript : MonoBehaviour {
 	public int points = 1;
 	public int numberOfHits;
 	private GameObject playerObject;
+	public GameObject boom;
 	public ParticleSystem thisParticle;
 	public void setHitsToKill(int value)
 	{
@@ -21,13 +22,12 @@ public class BlockScript : MonoBehaviour {
 
 			if (numberOfHits == hitsToKill){
 				playerObject.SendMessage ("addPoints",points);
-				this.GetComponent<SpriteRenderer> ().enabled = false;
-				this.GetComponent<BoxCollider2D> ().enabled = false;
-				this.GetComponent<ParticleSystem>().Play (true);
-				if (!this.GetComponent<ParticleSystem>().IsAlive ()) {
-					Destroy (this.gameObject);
+				boom = Instantiate(Resources.Load("Explosion", typeof(GameObject)) , this.transform.position, this.transform.rotation) as GameObject;
+				int bonusIsset = Random.Range (0, 50);
+				if (this.tag == "Bonus"&&bonusIsset >= 30) {
+					GameObject bonusBlock = Instantiate (Resources.Load ("Bonus", typeof(GameObject)), this.transform.position, this.transform.rotation) as GameObject;
 				}
-				//
+				this.gameObject.SetActive(false);
 			}
 		}
 	}
