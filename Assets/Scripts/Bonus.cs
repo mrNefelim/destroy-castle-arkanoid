@@ -19,8 +19,7 @@ public class Bonus : MonoBehaviour {
 				default:
 					break;
 			}
-			this.gameObject.GetComponent<Collider2D>().enabled = false;
-			this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+			Destroy (this.gameObject);
 		}
 	}
 	// Use this for initialization

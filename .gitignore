@@ -1,10 +1,1 @@
-/Library/*
-/Temp/*
-/obj/*
-/.vs/*
 /new/*
-/Arkanoid.CSharp.csproj
-/Arkanoid.sln
-/Arkanoid.userprefs
-/Assembly-CSharp.csproj
-*.meta
